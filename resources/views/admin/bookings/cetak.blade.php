@@ -1,0 +1,1 @@
+@include('peminjam.bookings.cetak')
