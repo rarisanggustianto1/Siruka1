@@ -302,5 +302,7 @@ class DatabaseSeeder extends Seeder
             'status' => 'dibatalkan',
             'alasan_penolakan' => null,
         ]);
+
+        $this->call(RoomScheduleSeeder::class);
     }
 }
