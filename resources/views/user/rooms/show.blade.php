@@ -6,14 +6,14 @@
         <h1 class="text-2xl font-bold text-gray-800">{{ $room->nama }}</h1>
         <p class="text-sm text-gray-600">{{ $room->gedung }} - Lantai {{ $room->lantai }} | Kapasitas: {{ $room->kapasitas }} Orang</p>
 
-        <!-- Form Filter Tanggal Ketersediaan -->
+
         <form method="GET" action="{{ route('user.rooms.show', $room) }}" class="flex items-center gap-3 border-t border-b py-3">
             <label class="text-sm font-semibold">Lihat Jadwal Tanggal:</label>
             <input type="date" name="tanggal" value="{{ $selectedDate }}" class="border p-1.5 text-sm rounded">
-            <button type="submit" class="bg-indigo-600 text-white text-xs px-3 py-2 rounded">Cek</button>
+            <button type="submit" class="bg-blue-600 text-white text-xs px-3 py-2 rounded">Cek</button>
         </form>
 
-        <!-- Daftar Jam Terpakai -->
+
         <div>
             <h3 class="font-bold text-sm text-gray-700 mb-2">Jadwal Terpakai pada {{ $selectedDate }}:</h3>
             <div class="space-y-2">
@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <a href="{{ route('user.bookings.create', ['room_id' => $room->id]) }}" class="inline-block bg-indigo-600 text-white text-sm px-4 py-2 rounded font-semibold">Lanjut Ajukan Booking</a>
+        <a href="{{ route('user.bookings.create', ['room_id' => $room->id]) }}" class="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded font-semibold">Lanjut Ajukan Booking</a>
     </div>
 </div>
 @endsection

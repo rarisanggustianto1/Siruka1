@@ -22,7 +22,6 @@ class DashboardController extends Controller
             'total' => Booking::where('user_id', $userId)->count(),
         ];
 
-        // Jadwal peminjaman terdekat (hari ini & mendatang)
         $upcomingBookings = Booking::with('room')
             ->where('user_id', $userId)
             ->where('tanggal', '>=', $today)
@@ -32,7 +31,6 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-        // Riwayat 5 pengajuan terakhir
         $recentBookings = Booking::with('room')
             ->where('user_id', $userId)
             ->orderBy('created_at', 'desc')

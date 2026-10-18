@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Room;
+use App\Models\RoomSchedule;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -58,6 +59,10 @@ class BookingController extends Controller
         }
 
         // Check conflict with existing approved bookings
+        if (RoomSchedule::hasConflict($booking->room_id, $booking->tanggal->toDateString(), $booking->jam_mulai, $booking->jam_selesai)) {
+            return back()->with('error', 'Persetujuan gagal: waktu pengajuan bentrok dengan jadwal kuliah rutin ruangan.');
+        }
+
         if (Booking::hasConflict($booking->room_id, $booking->tanggal->toDateString(), $booking->jam_mulai, $booking->jam_selesai, $booking->id)) {
             return back()->with('error', 'Persetujuan gagal: Terdapat jadwal booking lain yang telah disetujui pada ruangan, tanggal, dan rentang jam tersebut (Jadwal Bentrok).');
         }

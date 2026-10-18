@@ -46,7 +46,12 @@ class Room extends Model
      */
     public function facilities(): BelongsToMany
     {
-        return $this->belongsToMany(Facility::class, 'facility_room', 'room_id', 'facility_id')->withTimestamps();
+        return $this->belongsToMany(Facility::class, 'facility_room', 'room_id', 'facility_id')->withPivot(['kode_barang', 'nomor_inventaris', 'tahun', 'jumlah', 'kondisi', 'catatan'])->withTimestamps();
+    }
+
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(RoomSchedule::class);
     }
 
     /**

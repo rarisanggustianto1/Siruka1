@@ -118,7 +118,6 @@ class RoomController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            // Delete old photo if exists
             if ($room->foto && Storage::disk('public')->exists($room->foto)) {
                 Storage::disk('public')->delete($room->foto);
             }

@@ -57,7 +57,7 @@ class Booking extends Model
     }
 
     /**
-     * Check if a proposed booking time conflicts with any APPROVED booking in the same room.
+     * Check if a proposed booking time conflicts with a pending or approved booking.
      */
     public static function hasConflict(int $roomId, string $tanggal, string $jamMulai, string $jamSelesai, ?int $excludeId = null): bool
     {
@@ -69,7 +69,7 @@ class Booking extends Model
 
         $query = static::where('room_id', $roomId)
             ->whereDate('tanggal', $tanggal)
-            ->where('status', 'disetujui')
+            ->whereIn('status', ['menunggu', 'disetujui'])
             ->where(function ($q) use ($jamMulaiFormatted, $jamSelesaiFormatted, $jamMulai5, $jamSelesai5) {
                 $q->where(function ($sub) use ($jamSelesaiFormatted, $jamSelesai5) {
                     $sub->where('jam_mulai', '<', $jamSelesaiFormatted)

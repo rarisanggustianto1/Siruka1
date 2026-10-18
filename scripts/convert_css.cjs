@@ -1,6 +1,8 @@
 const fs = require('fs');
+const path = require('path');
+const projectRoot = path.resolve(__dirname, '..');
 
-let css = fs.readFileSync('public/css/app.css', 'utf8');
+let css = fs.readFileSync(path.join(projectRoot, 'public/css/app.css'), 'utf8');
 
 // Remove tailwind header comment and any reference to tailwind
 css = css.replace(/\/\*![\s\S]*?tailwindcss[\s\S]*?\*\//gi, '');
@@ -21,10 +23,10 @@ const header = `/**
 
 :root {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --primary: #4f46e5;
-  --primary-hover: #4338ca;
-  --primary-light: #eef2ff;
-  --secondary: #7c3aed;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
+  --secondary: #1e40af;
   --success: #10b981;
   --warning: #f59e0b;
   --danger: #e11d48;
@@ -37,6 +39,6 @@ const header = `/**
 `;
 
 const finalCss = header + css.trim();
-fs.writeFileSync('public/css/app.css', finalCss);
-fs.writeFileSync('resources/css/app.css', finalCss);
+fs.writeFileSync(path.join(projectRoot, 'public/css/app.css'), finalCss);
+fs.writeFileSync(path.join(projectRoot, 'resources/css/app.css'), finalCss);
 console.log('Successfully written Vanilla CSS. Length:', finalCss.length);

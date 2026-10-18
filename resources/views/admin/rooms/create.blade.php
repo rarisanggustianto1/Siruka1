@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
@@ -60,7 +60,7 @@
             <textarea name="deskripsi" rows="3" class="w-full border p-2 rounded text-sm">{{ old('deskripsi') }}</textarea>
         </div>
 
-        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded text-sm font-semibold">Simpan Ruangan</button>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded text-sm font-semibold">Simpan Ruangan</button>
     </form>
 </div>
 @endsection

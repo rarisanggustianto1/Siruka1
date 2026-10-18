@@ -5,9 +5,9 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-6">
-    <!-- Breadcrumb & Top Actions -->
+
     <div class="flex items-center justify-between">
-        <a href="{{ route('admin.bookings.index') }}" class="inline-flex items-center text-xs font-bold text-slate-500 hover:text-indigo-600 transition-colors">
+        <a href="{{ route('admin.bookings.index') }}" class="inline-flex items-center text-xs font-bold text-slate-500 hover:text-blue-600 transition-colors">
             <svg class="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
             Kembali ke Daftar Booking
         </a>
@@ -31,7 +31,7 @@
 
             @if($booking->status === 'disetujui')
                 <a href="{{ route('admin.bookings.cetak', $booking) }}" target="_blank"
-                    class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-sm transition-colors flex items-center">
+                    class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition-colors flex items-center">
                     <svg class="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                     Cetak Surat Bukti Izin
                 </a>
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <!-- Status Header Banner -->
+
     <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
             <div class="flex items-center space-x-3">
@@ -54,13 +54,13 @@
 
         <div class="text-left sm:text-right bg-slate-50 sm:bg-transparent p-4 sm:p-0 rounded-2xl">
             <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Jadwal Penggunaan</p>
-            <p class="text-base font-extrabold text-indigo-700 mt-0.5">{{ \Carbon\Carbon::parse($booking->tanggal)->isoFormat('dddd, D MMMM Y') }}</p>
+            <p class="text-base font-extrabold text-blue-700 mt-0.5">{{ \Carbon\Carbon::parse($booking->tanggal)->isoFormat('dddd, D MMMM Y') }}</p>
             <p class="text-sm font-mono font-bold text-slate-800">{{ substr($booking->jam_mulai, 0, 5) }} - {{ substr($booking->jam_selesai, 0, 5) }} WIB</p>
         </div>
     </div>
 
     @if($booking->status === 'ditolak' && $booking->alasan_penolakan)
-        <!-- Rejection Note -->
+
         <div class="p-5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900 flex items-start space-x-3 shadow-sm">
             <svg class="w-6 h-6 text-rose-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -73,9 +73,9 @@
     @endif
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Left: Detail Kegiatan & Ruangan (2 Cols) -->
+
         <div class="lg:col-span-2 space-y-6">
-            <!-- Rincian Agenda -->
+
             <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
                 <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Keperluan & Agenda Acara</h3>
                 <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-sm text-slate-800 leading-relaxed font-medium">
@@ -97,7 +97,7 @@
                 </div>
             </div>
 
-            <!-- Rincian Ruangan -->
+
             <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
                 <div class="h-44 bg-slate-100 relative">
                     <img src="{{ $booking->room->foto_url }}" alt="{{ $booking->room->nama }}" class="w-full h-full object-cover">
@@ -129,13 +129,13 @@
             </div>
         </div>
 
-        <!-- Right: Info Pemohon (1 Col) -->
+
         <div class="space-y-6">
             <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
                 <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Identitas Mahasiswa Peminjam</h3>
 
                 <div class="flex items-center space-x-3 pb-3 border-b border-slate-100">
-                    <div class="w-11 h-11 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center font-bold text-indigo-700 text-sm">
+                    <div class="w-11 h-11 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center font-bold text-blue-700 text-sm">
                         {{ substr($booking->user->name, 0, 1) }}
                     </div>
                     <div>

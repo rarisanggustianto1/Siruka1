@@ -21,7 +21,7 @@ class AuthController extends Controller
         $defaultLogin = match ($demo) {
             'admin' => 'admin@siruka.ac.id',
             'mahasiswa', 'peminjam', 'user' => 'alya@siruka.ac.id',
-            default => old('login', old('email', '')),
+            default => old('login', old('email', (string) $request->session()->get('registered_login', ''))),
         };
         $defaultPassword = $demo ? 'password' : '';
 
@@ -84,8 +84,7 @@ class AuthController extends Controller
                     ->with('success', 'Selamat datang kembali, Administrator '.$user->name.'!');
             }
 
-            // Peminjam / regular user:
-            // CRITICAL: Clear intended URL if it pointed to admin to avoid 403 Forbidden errors
+            // Clear admin destinations before redirecting a regular user.
             $intended = session()->get('url.intended');
             if ($intended && str_contains($intended, '/admin')) {
                 session()->forget('url.intended');
@@ -141,11 +140,9 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        Auth::login($user);
-        $request->session()->regenerate();
-
-        return redirect()->route('peminjam.dashboard')
-            ->with('success', 'Pendaftaran akun berhasil! Selamat datang di SIRUKA.');
+        return redirect()->route('login')
+            ->with('success', 'Pendaftaran berhasil. Silakan masuk menggunakan akun yang baru Anda daftarkan.')
+            ->with('registered_login', $user->email);
     }
 
     public function logout(Request $request)

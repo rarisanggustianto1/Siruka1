@@ -308,12 +308,12 @@
     </div>
 
     <div class="container">
-        <!-- Verified Watermark Badge -->
+
         <div class="watermark-badge">
             ✓ Disetujui
         </div>
 
-        <!-- Kop Surat Resmi -->
+
         <div class="kop-surat">
             <div class="kop-logo">🏛️</div>
             <div class="kop-text">
@@ -323,7 +323,7 @@
             </div>
         </div>
 
-        <!-- Judul Dokumen -->
+
         <div class="surat-header">
             <h3 class="surat-title">Surat Bukti Persetujuan Peminjaman Ruangan</h3>
             <p class="surat-nomor">Nomor Dokumen: SIRUKA/{{ date('Y') }}/BK-{{ str_pad($booking->id, 5, '0', STR_PAD_LEFT) }}</p>
@@ -333,7 +333,7 @@
             Berdasarkan verifikasi sistem informasi peminjaman ruangan kampus (SIRUKA), bersama ini Biro Sarana dan Prasarana memberikan izin penggunaan fasilitas ruangan kepada mahasiswa di bawah ini:
         </p>
 
-        <!-- Data Peminjam -->
+
         <div class="section-title">I. Identitas Mahasiswa Pemohon</div>
         <table class="info-table">
             <tr>
@@ -358,7 +358,7 @@
             </tr>
         </table>
 
-        <!-- Data Ruangan & Jadwal -->
+
         <div class="section-title">II. Rincian Ruangan & Jadwal Peminjaman</div>
         <table class="info-table">
             <tr>
@@ -404,7 +404,7 @@
             </tr>
         </table>
 
-        <!-- Tata Tertib -->
+
         <div class="rules-box">
             <strong>TATA TERTIB & KETENTUAN PENGGUNAAN RUANGAN:</strong>
             <ol>
@@ -416,7 +416,7 @@
             </ol>
         </div>
 
-        <!-- Tanda Tangan & QR Verification -->
+
         <div class="signature-section">
             <div class="barcode-box">
                 <div class="barcode">||| | |||| || | ||</div>

@@ -10,7 +10,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m0 0v2m0-2h2m-2 0H10m11-3.5a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         </div>
-        
+
         <div>
             <span class="inline-block px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">
                 Error 403 &bull; Akses Dibatasi
@@ -24,16 +24,16 @@
         <div class="flex flex-col sm:flex-row gap-3 justify-center pt-2">
             @auth
                 @if(auth()->user()->isAdmin())
-                    <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 font-bold text-sm shadow-sm transition-all">
+                    <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-white bg-blue-600 hover:bg-blue-700 font-bold text-sm shadow-sm transition-all">
                         Kembali ke Panel Admin
                     </a>
                 @else
-                    <a href="{{ route('peminjam.dashboard') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 font-bold text-sm shadow-sm transition-all">
+                    <a href="{{ route('peminjam.dashboard') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-white bg-blue-600 hover:bg-blue-700 font-bold text-sm shadow-sm transition-all">
                         Kembali ke Dashboard Mahasiswa
                     </a>
                 @endif
             @else
-                <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 font-bold text-sm shadow-sm transition-all">
+                <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-white bg-blue-600 hover:bg-blue-700 font-bold text-sm shadow-sm transition-all">
                     Masuk ke Akun
                 </a>
             @endauth

@@ -219,7 +219,7 @@
     </div>
 
     <div class="container">
-        <!-- Kop Surat Resmi -->
+
         <div class="kop-surat">
             <div class="kop-logo">🏛️</div>
             <div class="kop-text">
@@ -229,7 +229,7 @@
             </div>
         </div>
 
-        <!-- Judul Laporan -->
+
         <div class="report-header">
             <div class="report-title">Laporan Rekapitulasi Peminjaman Ruangan</div>
             <div class="report-period">
@@ -240,7 +240,7 @@
             </div>
         </div>
 
-        <!-- Ringkasan Statistik -->
+
         <div class="summary-grid">
             <div class="summary-card">
                 <div class="summary-label">Total Pengajuan</div>
@@ -260,7 +260,7 @@
             </div>
         </div>
 
-        <!-- Tabel Data Peminjaman -->
+
         <table>
             <thead>
                 <tr>
@@ -306,7 +306,7 @@
             </tbody>
         </table>
 
-        <!-- Lembar Tanda Tangan -->
+
         <div class="signature-section">
             <div class="sig-box">
                 <p class="sig-title">Mengetahui,</p>

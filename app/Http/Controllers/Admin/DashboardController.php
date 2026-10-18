@@ -29,7 +29,6 @@ class DashboardController extends Controller
             'ruangan_maintenance' => Room::where('status', 'maintenance')->count(),
         ];
 
-        // 5 pengajuan terbaru yang menunggu persetujuan
         $pendingBookings = Booking::with(['user', 'room'])
             ->where('status', 'menunggu')
             ->orderBy('created_at', 'desc')
@@ -38,7 +37,6 @@ class DashboardController extends Controller
 
         $recentBookings = $pendingBookings;
 
-        // Jadwal booking hari ini
         $todayBookings = Booking::with(['user', 'room'])
             ->where('tanggal', $today)
             ->where('status', 'disetujui')

@@ -4,7 +4,7 @@
 <div class="bg-white p-6 rounded-lg shadow space-y-4">
     <div class="flex justify-between items-center">
         <h1 class="text-xl font-bold text-gray-800">Riwayat Pengajuan Booking Saya</h1>
-        <a href="{{ route('user.bookings.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded text-sm hover:bg-indigo-700">+ Buat Pengajuan</a>
+        <a href="{{ route('user.bookings.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700">+ Buat Pengajuan</a>
     </div>
 
     <div class="overflow-x-auto">

@@ -6,7 +6,7 @@
         <h1 class="text-2xl font-bold text-gray-800">Daftar Ketersediaan Ruangan</h1>
     </div>
 
-    <!-- Filter Card -->
+
     <form method="GET" action="{{ route('user.rooms.index') }}" class="bg-white p-4 rounded-lg shadow flex flex-wrap gap-4 items-end">
         <div>
             <label class="block text-xs font-bold text-gray-600 mb-1">Minimal Kapasitas</label>
@@ -24,10 +24,10 @@
                 @endforeach
             </div>
         </div>
-        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 text-sm rounded">Cari Ruangan</button>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 text-sm rounded">Cari Ruangan</button>
     </form>
 
-    <!-- Grid Katalog Ruangan -->
+
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         @forelse($rooms as $room)
             <div class="bg-white rounded-lg shadow overflow-hidden flex flex-col justify-between">
@@ -42,17 +42,17 @@
                     <div class="p-4 space-y-2">
                         <h2 class="font-bold text-lg text-gray-800">{{ $room->nama }}</h2>
                         <p class="text-xs text-gray-500">{{ $room->gedung }} (Lantai {{ $room->lantai }})</p>
-                        <p class="text-sm font-semibold text-indigo-600">Kapasitas: {{ $room->kapasitas }} orang</p>
+                        <p class="text-sm font-semibold text-blue-600">Kapasitas: {{ $room->kapasitas }} orang</p>
                         <div class="flex flex-wrap gap-1">
                             @foreach($room->facilities as $f)
-                                <span class="bg-indigo-50 text-indigo-700 text-xs px-2 py-0.5 rounded">{{ $f->nama_fasilitas }}</span>
+                                <span class="bg-blue-50 text-blue-700 text-xs px-2 py-0.5 rounded">{{ $f->nama_fasilitas }}</span>
                             @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="p-4 bg-gray-50 border-t flex gap-2">
-                    <a href="{{ route('user.rooms.show', $room) }}" class="w-1/2 text-center border border-indigo-600 text-indigo-600 py-1.5 rounded text-xs font-semibold">Cek Jadwal</a>
-                    <a href="{{ route('user.bookings.create', ['room_id' => $room->id]) }}" class="w-1/2 text-center bg-indigo-600 text-white py-1.5 rounded text-xs font-semibold">Booking</a>
+                    <a href="{{ route('user.rooms.show', $room) }}" class="w-1/2 text-center border border-blue-600 text-blue-600 py-1.5 rounded text-xs font-semibold">Cek Jadwal</a>
+                    <a href="{{ route('user.bookings.create', ['room_id' => $room->id]) }}" class="w-1/2 text-center bg-blue-600 text-white py-1.5 rounded text-xs font-semibold">Booking</a>
                 </div>
             </div>
         @empty

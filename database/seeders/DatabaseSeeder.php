@@ -74,110 +74,166 @@ class DatabaseSeeder extends Seeder
         $fCctv = Facility::create(['nama_fasilitas' => 'CCTV 24 Jam & RFID Access']);
 
         // 3. Master Ruangan Jurusan Ilmu Komputer FMIPA Unila
-        $rpl = Room::create([
-            'kode' => 'LAB-RPL',
-            'nama' => 'Laboratorium Rekayasa Perangkat Lunak',
-            'gedung' => 'Gedung Ilmu Komputer',
-            'lantai' => 2,
-            'kapasitas' => 40,
-            'deskripsi' => 'Laboratorium untuk pengembangan software, mobile application, web development, dan project riset RPL FMIPA Unila.',
-            'status' => 'tersedia',
-        ]);
-        $rpl->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWhiteboard->id, $fWorkstation->id, $fCctv->id]);
-
-        $jarkom = Room::create([
-            'kode' => 'LAB-JARKOM',
-            'nama' => 'Laboratorium Jaringan & Keamanan Siber',
-            'gedung' => 'Gedung Ilmu Komputer',
-            'lantai' => 2,
-            'kapasitas' => 35,
-            'deskripsi' => 'Fasilitas perangkat jaringan Cisco, server rack, perangkat IoT, dan praktikum computer network & cyber security.',
-            'status' => 'tersedia',
-        ]);
-        $jarkom->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWorkstation->id, $fCctv->id]);
-
-        $dasar = Room::create([
-            'kode' => 'LAB-DASAR',
-            'nama' => 'Laboratorium Komputer Dasar & Algoritma',
-            'gedung' => 'Gedung Ilmu Komputer',
+        // GIK C Lt. 1
+        $gikC1 = Room::create([
+            'kode' => 'GIK-C-LT1',
+            'nama' => 'GIK C Lt. 1',
+            'gedung' => 'Gedung Ilmu Komputer (GIK) C',
             'lantai' => 1,
             'kapasitas' => 45,
-            'deskripsi' => 'Laboratorium utama untuk praktikum Dasar Pemrograman, Struktur Data, dan Algoritma mahasiswa Ilmu Komputer.',
+            'deskripsi' => 'Ruang kuliah di lantai 1 Gedung Ilmu Komputer C. Dilengkapi proyektor dan AC, cocok untuk kuliah reguler dan tutorial.',
             'status' => 'tersedia',
         ]);
-        $dasar->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWhiteboard->id, $fWorkstation->id]);
+        $gikC1->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWhiteboard->id]);
 
-        $ai = Room::create([
-            'kode' => 'LAB-AI',
-            'nama' => 'Laboratorium AI & Sains Data',
-            'gedung' => 'Gedung Ilmu Komputer',
-            'lantai' => 3,
-            'kapasitas' => 35,
-            'deskripsi' => 'Pusat riset Artificial Intelligence, Machine Learning, Deep Learning, dan Computer Vision FMIPA Unila.',
+        // GIK C Lt. 2
+        $gikC2 = Room::create([
+            'kode' => 'GIK-C-LT2',
+            'nama' => 'GIK C Lt. 2',
+            'gedung' => 'Gedung Ilmu Komputer (GIK) C',
+            'lantai' => 2,
+            'kapasitas' => 45,
+            'deskripsi' => 'Ruang kuliah di lantai 2 Gedung Ilmu Komputer C. Dilengkapi fasilitas multimedia modern untuk kegiatan pembelajaran.',
             'status' => 'tersedia',
         ]);
-        $ai->facilities()->attach([$fSmartTv->id, $fAc->id, $fWifi->id, $fWhiteboard->id, $fWorkstation->id, $fCctv->id]);
+        $gikC2->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWhiteboard->id, $fSmartTv->id]);
 
+        // GIK A
+        $gikA = Room::create([
+            'kode' => 'GIK-A',
+            'nama' => 'GIK A',
+            'gedung' => 'Gedung Ilmu Komputer (GIK) A',
+            'lantai' => 1,
+            'kapasitas' => 60,
+            'deskripsi' => 'Ruang kuliah besar di Gedung Ilmu Komputer A. Kapasitas lebih besar, ideal untuk kuliah bersama dan kelas besar.',
+            'status' => 'tersedia',
+        ]);
+        $gikA->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWhiteboard->id, $fSound->id]);
+
+        // GIK B
+        $gikB = Room::create([
+            'kode' => 'GIK-B',
+            'nama' => 'GIK B',
+            'gedung' => 'Gedung Ilmu Komputer (GIK) B',
+            'lantai' => 1,
+            'kapasitas' => 50,
+            'deskripsi' => 'Ruang kuliah di Gedung Ilmu Komputer B. Fasilitas lengkap untuk kegiatan perkuliahan, seminar kecil, dan diskusi kelompok.',
+            'status' => 'tersedia',
+        ]);
+        $gikB->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWhiteboard->id]);
+
+        // Ruang Seminar
         $seminar = Room::create([
             'kode' => 'R-SEMINAR',
-            'nama' => 'Ruang Seminar Jurusan Ilmu Komputer',
-            'gedung' => 'Gedung Ilmu Komputer',
+            'nama' => 'Ruang Seminar',
+            'gedung' => 'Gedung Ilmu Komputer (GIK)',
             'lantai' => 3,
-            'kapasitas' => 85,
-            'deskripsi' => 'Ruangan berkapasitas besar untuk kuliah umum, seminar proposal, workshop teknologi, dan presentasi karya akhir.',
+            'kapasitas' => 100,
+            'deskripsi' => 'Ruang seminar berkapasitas besar untuk kuliah umum, workshop teknologi, seminar proposal, dan presentasi karya akhir mahasiswa Ilmu Komputer.',
             'status' => 'tersedia',
         ]);
         $seminar->facilities()->attach([$fProyektor->id, $fAc->id, $fSound->id, $fWifi->id, $fWhiteboard->id, $fPodium->id]);
 
-        $sidang = Room::create([
-            'kode' => 'R-SIDANG',
-            'nama' => 'Ruang Sidang Skripsi Jurusan',
-            'gedung' => 'Gedung Ilmu Komputer',
-            'lantai' => 1,
-            'kapasitas' => 25,
-            'deskripsi' => 'Ruang khusus pelaksanaan ujian skripsi, komprehensif, dan rapat pimpinan jurusan Ilmu Komputer.',
-            'status' => 'tersedia',
-        ]);
-        $sidang->facilities()->attach([$fSmartTv->id, $fAc->id, $fWifi->id, $fWhiteboard->id, $fPodium->id]);
-
-        $diskusi = Room::create([
-            'kode' => 'R-DISKUSI',
-            'nama' => 'Ruang Diskusi & Inkubator Riset Mahasiswa',
-            'gedung' => 'Gedung Ilmu Komputer',
-            'lantai' => 1,
-            'kapasitas' => 20,
-            'deskripsi' => 'Ruang santai kolaboratif untuk pengerjaan tugas akhir, bimbingan kelompok riset, dan coding session HIMATRO / HIMAKOM.',
-            'status' => 'tersedia',
-        ]);
-        $diskusi->facilities()->attach([$fAc->id, $fWifi->id, $fWhiteboard->id, $fSmartTv->id]);
-
-        $aula = Room::create([
-            'kode' => 'AULA-FMIPA',
-            'nama' => 'Aula Dekanat FMIPA Unila',
-            'gedung' => 'Gedung Dekanat FMIPA',
+        // Ruang Baca
+        $baca = Room::create([
+            'kode' => 'R-BACA',
+            'nama' => 'Ruang Baca',
+            'gedung' => 'Gedung Ilmu Komputer (GIK)',
             'lantai' => 2,
-            'kapasitas' => 250,
-            'deskripsi' => 'Aula serbaguna fakultas untuk yudisium, pelantikan organisasi mahasiswa, konferensi internasional, dan dies natalis.',
+            'kapasitas' => 30,
+            'deskripsi' => 'Ruang baca dan diskusi tenang untuk mahasiswa. Tersedia koleksi buku referensi, jurnal, dan area belajar mandiri yang kondusif.',
             'status' => 'tersedia',
         ]);
-        $aula->facilities()->attach([$fProyektor->id, $fAc->id, $fSound->id, $fWifi->id, $fPodium->id, $fCctv->id]);
+        $baca->facilities()->attach([$fAc->id, $fWifi->id, $fSmartTv->id]);
 
-        $maintenanceRoom = Room::create([
-            'kode' => 'LAB-MULTIMEDIA',
-            'nama' => 'Laboratorium Multimedia & Game Studio',
-            'gedung' => 'Gedung Ilmu Komputer',
-            'lantai' => 3,
-            'kapasitas' => 30,
-            'deskripsi' => 'Sedang dilakukan upgrade workstation GPU RTX dan instalasi soundproofing studio audio visual.',
+        // MIPA T Lt 1 A
+        $mipaTA = Room::create([
+            'kode' => 'MIPA-T-1A',
+            'nama' => 'MIPA T Lt 1 A',
+            'gedung' => 'Gedung MIPA Terpadu (MIPA T)',
+            'lantai' => 1,
+            'kapasitas' => 50,
+            'deskripsi' => 'Ruang kuliah di lantai 1 Gedung MIPA Terpadu sayap A. Digunakan untuk mata kuliah matematika, fisika, dan sains dasar bersama.',
+            'status' => 'tersedia',
+        ]);
+        $mipaTA->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWhiteboard->id]);
+
+        // MIPA T Lt 1 B
+        $mipaTB = Room::create([
+            'kode' => 'MIPA-T-1B',
+            'nama' => 'MIPA T Lt 1 B',
+            'gedung' => 'Gedung MIPA Terpadu (MIPA T)',
+            'lantai' => 1,
+            'kapasitas' => 50,
+            'deskripsi' => 'Ruang kuliah di lantai 1 Gedung MIPA Terpadu sayap B. Fasilitas lengkap untuk perkuliahan bersama lintas jurusan FMIPA.',
+            'status' => 'tersedia',
+        ]);
+        $mipaTB->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWhiteboard->id]);
+
+        // Lab RPL
+        $labRpl = Room::create([
+            'kode' => 'LAB-RPL',
+            'nama' => 'Lab RPL',
+            'gedung' => 'Gedung Ilmu Komputer (GIK)',
+            'lantai' => 2,
+            'kapasitas' => 40,
+            'deskripsi' => 'Laboratorium Rekayasa Perangkat Lunak. Dilengkapi workstation untuk pengembangan software, mobile application, web development, dan project riset RPL.',
+            'status' => 'tersedia',
+        ]);
+        $labRpl->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWhiteboard->id, $fWorkstation->id, $fCctv->id]);
+
+        // LAB KD R1
+        $labKdR1 = Room::create([
+            'kode' => 'LAB-KD-R1',
+            'nama' => 'LAB Komputasi Dasar (KD) R1',
+            'gedung' => 'Gedung Ilmu Komputer (GIK)',
+            'lantai' => 1,
+            'kapasitas' => 40,
+            'deskripsi' => 'Laboratorium Komputasi Dasar Ruang 1. Tempat praktikum Dasar Pemrograman, Algoritma, dan Pemrograman Terstruktur bagi mahasiswa baru.',
+            'status' => 'tersedia',
+        ]);
+        $labKdR1->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWorkstation->id]);
+
+        // LAB KD R2
+        $labKdR2 = Room::create([
+            'kode' => 'LAB-KD-R2',
+            'nama' => 'LAB Komputasi Dasar (KD) R2',
+            'gedung' => 'Gedung Ilmu Komputer (GIK)',
+            'lantai' => 1,
+            'kapasitas' => 40,
+            'deskripsi' => 'Laboratorium Komputasi Dasar Ruang 2. Mendukung praktikum Struktur Data, Algoritma Lanjut, dan pemrograman berbasis objek.',
+            'status' => 'tersedia',
+        ]);
+        $labKdR2->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWorkstation->id]);
+
+        // LAB KD R3
+        $labKdR3 = Room::create([
+            'kode' => 'LAB-KD-R3',
+            'nama' => 'LAB Komputasi Dasar (KD) R3',
+            'gedung' => 'Gedung Ilmu Komputer (GIK)',
+            'lantai' => 1,
+            'kapasitas' => 40,
+            'deskripsi' => 'Laboratorium Komputasi Dasar Ruang 3. Digunakan untuk praktikum Basis Data, Pemrograman Web, dan kelas komputer reguler.',
+            'status' => 'tersedia',
+        ]);
+        $labKdR3->facilities()->attach([$fProyektor->id, $fAc->id, $fWifi->id, $fWorkstation->id, $fWhiteboard->id]);
+
+        // LAB KD R4
+        $labKdR4 = Room::create([
+            'kode' => 'LAB-KD-R4',
+            'nama' => 'LAB Komputasi Dasar (KD) R4',
+            'gedung' => 'Gedung Ilmu Komputer (GIK)',
+            'lantai' => 1,
+            'kapasitas' => 40,
+            'deskripsi' => 'Laboratorium Komputasi Dasar Ruang 4. Fasilitas komputer untuk praktikum Jaringan Komputer, Sistem Operasi, dan pemrograman sistem.',
             'status' => 'maintenance',
         ]);
-        $maintenanceRoom->facilities()->attach([$fAc->id, $fWifi->id]);
+        $labKdR4->facilities()->attach([$fAc->id, $fWifi->id]);
 
         // 4. Sample Bookings (Hari ini & Mendatang & Riwayat)
-        // Booking 1: Hari Ini - Disetujui (Jadwal Terpakai)
         Booking::create([
             'user_id' => $mhs1->id,
-            'room_id' => $rpl->id,
+            'room_id' => $labRpl->id,
             'tanggal' => $today->toDateString(),
             'jam_mulai' => '08:00',
             'jam_selesai' => '11:00',
@@ -187,7 +243,6 @@ class DatabaseSeeder extends Seeder
             'alasan_penolakan' => null,
         ]);
 
-        // Booking 2: Hari Ini - Disetujui siang hari
         Booking::create([
             'user_id' => $mhs2->id,
             'room_id' => $seminar->id,
@@ -200,36 +255,33 @@ class DatabaseSeeder extends Seeder
             'alasan_penolakan' => null,
         ]);
 
-        // Booking 3: Besok - Status Menunggu (Untuk Pengujian Persetujuan Admin)
         Booking::create([
             'user_id' => $mhs1->id,
-            'room_id' => $jarkom->id,
+            'room_id' => $gikA->id,
             'tanggal' => $today->copy()->addDay()->toDateString(),
             'jam_mulai' => '09:00',
             'jam_selesai' => '12:00',
             'keperluan' => 'Simulasi CTF (Capture The Flag) Persiapan Kompetisi Cyber Security Nasional',
-            'jumlah_peserta' => 25,
+            'jumlah_peserta' => 50,
             'status' => 'menunggu',
             'alasan_penolakan' => null,
         ]);
 
-        // Booking 4: 2 Hari lagi - Status Menunggu
         Booking::create([
             'user_id' => $mhs3->id,
-            'room_id' => $ai->id,
+            'room_id' => $labKdR1->id,
             'tanggal' => $today->copy()->addDays(2)->toDateString(),
             'jam_mulai' => '10:00',
             'jam_selesai' => '12:30',
             'keperluan' => 'Hands-on Training Fine Tuning Model LLM Open Source',
-            'jumlah_peserta' => 28,
+            'jumlah_peserta' => 35,
             'status' => 'menunggu',
             'alasan_penolakan' => null,
         ]);
 
-        // Booking 5: Ditolak dengan alasan
         Booking::create([
             'user_id' => $mhs2->id,
-            'room_id' => $dasar->id,
+            'room_id' => $gikC1->id,
             'tanggal' => $today->copy()->subDays(2)->toDateString(),
             'jam_mulai' => '08:00',
             'jam_selesai' => '10:00',
@@ -239,14 +291,13 @@ class DatabaseSeeder extends Seeder
             'alasan_penolakan' => 'Ruangan pada jam tersebut sudah dijadwalkan untuk Ujian Praktikum Struktur Data reguler.',
         ]);
 
-        // Booking 6: Riwayat Dibatalkan oleh user
         Booking::create([
             'user_id' => $mhs1->id,
-            'room_id' => $sidang->id,
+            'room_id' => $baca->id,
             'tanggal' => $today->copy()->subDay()->toDateString(),
             'jam_mulai' => '14:00',
             'jam_selesai' => '16:00',
-            'keperluan' => 'Gladi Bersih Presentasi Sidang Tugas Akhir',
+            'keperluan' => 'Diskusi Kelompok Tugas Akhir',
             'jumlah_peserta' => 8,
             'status' => 'dibatalkan',
             'alasan_penolakan' => null,

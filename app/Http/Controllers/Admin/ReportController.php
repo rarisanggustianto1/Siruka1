@@ -43,7 +43,6 @@ class ReportController extends Controller
             });
         }
 
-        // Summary metrics for the filtered period
         $periodQuery = Booking::whereBetween('tanggal', [$startDate, $endDate]);
         if (! empty($roomId)) {
             $periodQuery->where('room_id', $roomId);

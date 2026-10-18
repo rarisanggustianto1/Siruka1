@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <!-- Ringkasan Booking yang Akan Ditolak -->
+
         <div class="p-6 bg-slate-50/70 border-b border-slate-200 text-xs text-slate-700 space-y-2">
             <div class="flex justify-between">
                 <span class="text-slate-500">Peminjam:</span>
@@ -36,7 +36,7 @@
             </div>
             <div class="flex justify-between">
                 <span class="text-slate-500">Jadwal Tanggal & Jam:</span>
-                <span class="font-bold text-indigo-700">{{ \Carbon\Carbon::parse($booking->tanggal)->isoFormat('dddd, D MMMM Y') }} ({{ substr($booking->jam_mulai, 0, 5) }} - {{ substr($booking->jam_selesai, 0, 5) }} WIB)</span>
+                <span class="font-bold text-blue-700">{{ \Carbon\Carbon::parse($booking->tanggal)->isoFormat('dddd, D MMMM Y') }} ({{ substr($booking->jam_mulai, 0, 5) }} - {{ substr($booking->jam_selesai, 0, 5) }} WIB)</span>
             </div>
             <div class="flex justify-between">
                 <span class="text-slate-500">Keperluan:</span>

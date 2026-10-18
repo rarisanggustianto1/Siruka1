@@ -6,61 +6,57 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Peminjam Portal') - SIRUKA</title>
 
-    <!-- Google Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Styles (Pure Standalone CSS, Zero JS, No Vite needed, with cache busting) -->
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ file_exists(public_path('css/app.css')) ? filemtime(public_path('css/app.css')) : '1.0' }}">
     @stack('styles')
 </head>
 <body class="flex flex-col min-h-screen text-slate-800 antialiased bg-slate-50">
-    <!-- Navbar (Pure HTML & CSS) -->
+
     <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <!-- Left: Logo & Links -->
+
                 <div class="flex items-center space-x-8">
                     <a href="{{ route('peminjam.dashboard') }}" class="flex items-center space-x-3 group">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-700 to-violet-600 flex items-center justify-center shadow-md shadow-indigo-500/20">
-                            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                            </svg>
-                        </div>
+                        <img src="{{ asset('images/logo-unila-transparent.png') }}" alt="Logo Universitas Lampung" class="unila-logo-image h-10 w-10">
                         <div>
-                            <span class="text-xl font-bold bg-gradient-to-r from-indigo-700 to-violet-700 bg-clip-text text-transparent">SIRUKA</span>
-                            <span class="text-xs font-semibold text-indigo-700 ml-1 px-2 py-0.5 bg-indigo-50 rounded-md border border-indigo-200">MAHASISWA ILKOM</span>
+                            <span class="peminjam-brand-name text-xl font-bold">SIRUKA</span>
+                            <span class="text-xs font-semibold text-blue-700 ml-1 px-2 py-0.5 bg-blue-50 rounded-md border border-blue-200">MAHASISWA ILKOM</span>
                         </div>
                     </a>
 
-                    <!-- Desktop Nav -->
+
                     <div class="hidden md:flex items-center space-x-1">
-                        <a href="{{ route('peminjam.dashboard') }}" class="px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors {{ request()->routeIs('peminjam.dashboard') ? 'bg-indigo-50 text-indigo-600 font-bold' : 'text-slate-600 hover:text-indigo-600 hover:bg-slate-50' }}">
+                        <a href="{{ route('peminjam.dashboard') }}" class="px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors {{ request()->routeIs('peminjam.dashboard') ? 'bg-blue-50 text-blue-600 font-bold' : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50' }}">
                             Dashboard
                         </a>
-                        <a href="{{ route('peminjam.rooms.index') }}" class="px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors {{ request()->routeIs('peminjam.rooms.*') ? 'bg-indigo-50 text-indigo-600 font-bold' : 'text-slate-600 hover:text-indigo-600 hover:bg-slate-50' }}">
+                        <a href="{{ route('peminjam.rooms.index') }}" class="px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors {{ request()->routeIs('peminjam.rooms.*') ? 'bg-blue-50 text-blue-600 font-bold' : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50' }}">
                             Cari Ruangan
                         </a>
-                        <a href="{{ route('peminjam.bookings.index') }}" class="px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors {{ request()->routeIs('peminjam.bookings.*') ? 'bg-indigo-50 text-indigo-600 font-bold' : 'text-slate-600 hover:text-indigo-600 hover:bg-slate-50' }}">
+                        <a href="{{ route('peminjam.bookings.index') }}" class="px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors {{ request()->routeIs('peminjam.bookings.*') ? 'bg-blue-50 text-blue-600 font-bold' : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50' }}">
                             Riwayat Booking
                         </a>
                     </div>
                 </div>
 
-                <!-- Right: CTA & User Details Dropdown (Pure HTML <details>) -->
+
                 <div class="flex items-center space-x-4">
-                    <a href="{{ route('peminjam.bookings.create') }}" class="hidden sm:inline-flex items-center px-4 py-2 text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-all">
+                    <a href="{{ route('peminjam.bookings.create') }}" class="hidden sm:inline-flex items-center px-4 py-2 text-sm font-semibold rounded-xl text-white bg-blue-600 hover:bg-blue-700 shadow-sm transition-all">
                         <svg class="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                         </svg>
                         Pinjam Ruangan
                     </a>
 
-                    <!-- User Menu via Native HTML <details> (Zero JS) -->
+
                     <details class="relative">
                         <summary class="list-none flex items-center space-x-3 p-1.5 rounded-xl hover:bg-slate-100 cursor-pointer focus:outline-none">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-violet-500 flex items-center justify-center text-white text-xs font-bold shadow-sm">
+                            <div class="peminjam-avatar w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-sm">
                                 {{ substr(auth()->user()->name, 0, 1) }}
                             </div>
                             <div class="text-left hidden sm:block">
@@ -90,7 +86,7 @@
                                 Riwayat Pengajuan
                             </a>
                             <div class="border-t border-slate-100 my-1"></div>
-                            <form action="{{ route('logout') }}" method="POST">
+                            <form action="{{ route('logout') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin keluar dari akun?')">
                                 @csrf
                                 <button type="submit" class="w-full text-left flex items-center px-4 py-2.5 text-sm text-rose-600 hover:bg-rose-50 font-medium transition-colors">
                                     <svg class="w-4 h-4 mr-2.5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -105,16 +101,16 @@
             </div>
         </div>
 
-        <!-- Mobile Quick Subnav -->
+
         <div class="md:hidden border-t border-slate-200 bg-slate-50 px-4 py-2 flex items-center justify-around text-xs font-bold text-slate-600">
-            <a href="{{ route('peminjam.dashboard') }}" class="{{ request()->routeIs('peminjam.dashboard') ? 'text-indigo-600 font-extrabold' : '' }}">Dashboard</a>
-            <a href="{{ route('peminjam.rooms.index') }}" class="{{ request()->routeIs('peminjam.rooms.*') ? 'text-indigo-600 font-extrabold' : '' }}">Katalog Ruangan</a>
-            <a href="{{ route('peminjam.bookings.index') }}" class="{{ request()->routeIs('peminjam.bookings.*') ? 'text-indigo-600 font-extrabold' : '' }}">Riwayat</a>
-            <a href="{{ route('peminjam.bookings.create') }}" class="text-indigo-600 font-extrabold">+ Pinjam</a>
+            <a href="{{ route('peminjam.dashboard') }}" class="{{ request()->routeIs('peminjam.dashboard') ? 'text-blue-600 font-extrabold' : '' }}">Dashboard</a>
+            <a href="{{ route('peminjam.rooms.index') }}" class="{{ request()->routeIs('peminjam.rooms.*') ? 'text-blue-600 font-extrabold' : '' }}">Katalog Ruangan</a>
+            <a href="{{ route('peminjam.bookings.index') }}" class="{{ request()->routeIs('peminjam.bookings.*') ? 'text-blue-600 font-extrabold' : '' }}">Riwayat</a>
+            <a href="{{ route('peminjam.bookings.create') }}" class="text-blue-600 font-extrabold">+ Pinjam</a>
         </div>
     </nav>
 
-    <!-- Global Alert Messages (Pure HTML) -->
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-6">
         @if(session('success'))
             <div class="mb-6 flex items-center justify-between p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 shadow-sm">
@@ -157,19 +153,19 @@
         @endif
     </div>
 
-    <!-- Main Content -->
+
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-16">
         @yield('content')
     </main>
 
-    <!-- Footer -->
+
     <footer class="bg-white border-t border-slate-200 mt-auto py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 space-y-2 sm:space-y-0">
             <div>&copy; {{ date('Y') }} SIRUKA - Sistem Booking Ruangan Kampus.</div>
             <div class="flex space-x-4">
-                <a href="{{ route('home') }}" class="hover:text-indigo-600">Beranda Publik</a>
-                <a href="{{ route('peminjam.rooms.index') }}" class="hover:text-indigo-600">Katalog Ruangan</a>
-                <a href="{{ route('peminjam.profile.index') }}" class="hover:text-indigo-600">Akun</a>
+                <a href="{{ route('home') }}" class="hover:text-blue-600">Beranda Publik</a>
+                <a href="{{ route('peminjam.rooms.index') }}" class="hover:text-blue-600">Katalog Ruangan</a>
+                <a href="{{ route('peminjam.profile.index') }}" class="hover:text-blue-600">Akun</a>
             </div>
         </div>
     </footer>

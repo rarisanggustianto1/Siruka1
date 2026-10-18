@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#003087" stroke="#FFD700" stroke-width="5"/>
+  
+  <!-- Inner ring -->
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#FFD700" stroke-width="2"/>
+  
+  <!-- Torch/flame icon -->
+  <path d="M100 40 C95 55 85 60 88 75 C85 68 78 70 80 80 C77 74 72 78 75 88 C70 82 67 88 72 98 C65 90 65 100 75 108 C73 115 77 120 85 122 C90 128 96 130 100 130 C104 130 110 128 115 122 C123 120 127 115 125 108 C135 100 135 90 128 98 C133 88 130 82 125 88 C128 78 123 74 120 80 C122 70 115 68 112 75 C115 60 105 55 100 40Z" fill="#FFD700"/>
+  
+  <!-- Inner flame -->
+  <path d="M100 60 C97 70 92 73 94 82 C92 77 88 79 90 86 C95 85 105 85 110 86 C112 79 108 77 106 82 C108 73 103 70 100 60Z" fill="#FF6B00"/>
+  
+  <!-- Book symbol -->
+  <path d="M75 140 L75 165 L100 158 L125 165 L125 140 L100 147 Z" fill="#FFD700"/>
+  <line x1="100" y1="147" x2="100" y2="165" stroke="#003087" stroke-width="2"/>
+  
+  <!-- UNILA text arc -->
+  <path id="topArc" d="M 25 100 A 75 75 0 0 1 175 100" fill="none"/>
+  <text font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#FFD700" letter-spacing="3">
+    <textPath href="#topArc" startOffset="15%">UNIVERSITAS LAMPUNG</textPath>
+  </text>
+  
+  <!-- Bottom arc text -->
+  <path id="bottomArc" d="M 30 110 A 70 70 0 0 0 170 110" fill="none"/>
+  <text font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFD700" letter-spacing="2">
+    <textPath href="#bottomArc" startOffset="20%">FMIPA • ILMU KOMPUTER</textPath>
+  </text>
+</svg>

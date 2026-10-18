@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="space-y-6">
-    <!-- Header -->
+
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
             <h2 class="text-xl font-extrabold text-slate-900">Semua Pengajuan Booking Ruangan</h2>
@@ -13,18 +13,18 @@
         </div>
     </div>
 
-    <!-- Filter Bar -->
+
     <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
         <form action="{{ route('admin.bookings.index') }}" method="GET" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <div>
                 <label class="block text-xs font-bold text-slate-600 mb-1">Cari Peminjam / Ruangan / Keperluan</label>
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Ketik kata kunci..."
-                    class="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    class="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none">
             </div>
 
             <div>
                 <label class="block text-xs font-bold text-slate-600 mb-1">Status Pengajuan</label>
-                <select name="status" class="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                <select name="status" class="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none">
                     <option value="">Semua Status</option>
                     <option value="menunggu" {{ request('status') == 'menunggu' ? 'selected' : '' }}>Menunggu Persetujuan</option>
                     <option value="disetujui" {{ request('status') == 'disetujui' ? 'selected' : '' }}>Disetujui</option>
@@ -36,7 +36,7 @@
             <div>
                 <label class="block text-xs font-bold text-slate-600 mb-1">Tanggal Booking</label>
                 <input type="date" name="tanggal" value="{{ request('tanggal') }}"
-                    class="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    class="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none">
             </div>
 
             <div class="flex items-end space-x-2">
@@ -52,7 +52,7 @@
         </form>
     </div>
 
-    <!-- Table of Bookings -->
+
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
@@ -85,7 +85,7 @@
                             </td>
                             <td class="py-4 px-6">
                                 <div class="font-semibold text-slate-800">{{ \Carbon\Carbon::parse($b->tanggal)->isoFormat('D MMM Y') }}</div>
-                                <div class="text-xs font-mono font-medium text-indigo-600">{{ substr($b->jam_mulai, 0, 5) }} - {{ substr($b->jam_selesai, 0, 5) }} WIB</div>
+                                <div class="text-xs font-mono font-medium text-blue-600">{{ substr($b->jam_mulai, 0, 5) }} - {{ substr($b->jam_selesai, 0, 5) }} WIB</div>
                             </td>
                             <td class="py-4 px-6 text-slate-700">
                                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-800">
@@ -95,7 +95,7 @@
                             <td class="py-4 px-6 text-slate-600 max-w-xs">
                                 <p class="text-xs" title="{{ $b->keperluan }}">{{ $b->keperluan }}</p>
                                 @if($b->status === 'ditolak' && $b->alasan_penolakan)
-                                    <!-- Pure HTML Details Toggle (Zero JS) -->
+
                                     <details class="mt-1">
                                         <summary class="text-[11px] font-bold text-rose-600 hover:underline cursor-pointer">
                                             Lihat Alasan Ditolak
@@ -113,7 +113,7 @@
                             </td>
                             <td class="py-4 px-6 text-right whitespace-nowrap">
                                 <div class="flex items-center justify-end space-x-1.5">
-                                    <a href="{{ route('admin.bookings.show', $b) }}" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 transition-colors" title="Lihat Rincian Lengkap">
+                                    <a href="{{ route('admin.bookings.show', $b) }}" class="p-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600 transition-colors" title="Lihat Rincian Lengkap">
                                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -130,7 +130,7 @@
                                     @endif
 
                                     @if($b->status === 'menunggu')
-                                        <!-- Approve Button (Pure HTML Form) -->
+
                                         <form action="{{ route('admin.bookings.approve', $b) }}" method="POST">
                                             @csrf
                                             <button type="submit" class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-colors" title="Setujui Booking">
@@ -138,14 +138,14 @@
                                             </button>
                                         </form>
 
-                                        <!-- Reject Button (Pure HTML link to dedicated reject page) -->
+
                                         <a href="{{ route('admin.bookings.reject_form', $b) }}"
                                             class="px-2.5 py-1.5 rounded-lg bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 font-bold text-xs transition-colors" title="Tolak dengan Alasan">
                                             Tolak
                                         </a>
                                     @endif
 
-                                    <!-- Delete Button (Pure HTML Form) -->
+
                                     <form action="{{ route('admin.bookings.destroy', $b) }}" method="POST" onsubmit="return confirm('Hapus riwayat booking ini?')">
                                         @csrf
                                         @method('DELETE')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Peminjam;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Room;
+use App\Models\RoomSchedule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,13 +95,16 @@ class BookingController extends Controller
         }
 
         // Batasan 3: Booking tidak boleh bentrok dengan booking berstatus Disetujui
+        if (RoomSchedule::hasConflict($room->id, $validated['tanggal'], $validated['jam_mulai'], $validated['jam_selesai'])) {
+            return back()->withInput()->withErrors(['jam_mulai' => "Jadwal bentrok dengan jadwal kuliah rutin di ruangan '{$room->nama}'."]);
+        }
+
         if (Booking::hasConflict($room->id, $validated['tanggal'], $validated['jam_mulai'], $validated['jam_selesai'])) {
             return back()->withInput()->withErrors([
                 'jam_mulai' => "Jadwal bentrok: Ruangan '{$room->nama}' sudah dipesan & disetujui untuk peminjam lain pada tanggal dan jam tersebut.",
             ]);
         }
 
-        // Simpan booking baru dengan status default 'menunggu'
         $booking = Booking::create([
             'user_id' => Auth::id(),
             'room_id' => $room->id,
@@ -218,14 +222,16 @@ class BookingController extends Controller
             ]);
         }
 
-        // Kapasitas check
         if ($validated['jumlah_peserta'] > $room->kapasitas) {
             return back()->withInput()->withErrors([
                 'jumlah_peserta' => "Jumlah peserta ({$validated['jumlah_peserta']} orang) melebihi kapasitas maksimal ruangan {$room->nama} ({$room->kapasitas} orang).",
             ]);
         }
 
-        // Bentrok check
+        if (RoomSchedule::hasConflict($room->id, $validated['tanggal'], $validated['jam_mulai'], $validated['jam_selesai'])) {
+            return back()->withInput()->withErrors(['jam_mulai' => "Jadwal bentrok dengan jadwal kuliah rutin di ruangan '{$room->nama}'."]);
+        }
+
         if (Booking::hasConflict($room->id, $validated['tanggal'], $validated['jam_mulai'], $validated['jam_selesai'], $booking->id)) {
             return back()->withInput()->withErrors([
                 'jam_mulai' => "Jadwal bentrok: Ruangan '{$room->nama}' sudah dipesan & disetujui untuk peminjam lain pada tanggal dan jam tersebut.",
@@ -257,8 +263,6 @@ class BookingController extends Controller
             return back()->with('error', 'Hanya booking berstatus Menunggu yang dapat dibatalkan.');
         }
 
-        // Update status to 'dibatalkan' or delete.
-        // As per spec: "Batalkan pengajuan hanya jika status masih Menunggu", status booking enum: "menunggu, disetujui, ditolak, dibatalkan"
         $booking->update(['status' => 'dibatalkan']);
 
         return redirect()->route('peminjam.bookings.index')

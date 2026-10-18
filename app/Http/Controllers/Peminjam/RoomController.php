@@ -52,11 +52,13 @@ class RoomController extends Controller
     public function show(Request $request, Room $room)
     {
         $room->load('facilities');
+        $daySchedules = $room->schedules()->where('aktif', true)->orderBy('day_of_week')->orderBy('jam_mulai')->get();
 
-        // Selected date for checking availability, default today
         $selectedDate = $request->query('tanggal', Carbon::today()->toDateString());
+        $selectedDaySchedules = $room->schedules()->where('aktif', true)
+            ->where('day_of_week', (int) Carbon::parse($selectedDate)->dayOfWeekIso)
+            ->orderBy('jam_mulai')->get();
 
-        // Approved bookings for the room on this selected date
         $approvedBookings = Booking::with('user')
             ->where('room_id', $room->id)
             ->where('tanggal', $selectedDate)
@@ -64,7 +66,6 @@ class RoomController extends Controller
             ->orderBy('jam_mulai')
             ->get();
 
-        // Also get pending bookings if any (to show indicator)
         $pendingBookings = Booking::with('user')
             ->where('room_id', $room->id)
             ->where('tanggal', $selectedDate)
@@ -72,7 +73,16 @@ class RoomController extends Controller
             ->orderBy('jam_mulai')
             ->get();
 
-        return view('peminjam.rooms.show', compact('room', 'selectedDate', 'approvedBookings', 'pendingBookings'));
+        $upcomingBookings = Booking::with('user:id,name')
+            ->where('room_id', $room->id)
+            ->where('status', 'disetujui')
+            ->where('tanggal', '>=', Carbon::today()->toDateString())
+            ->orderBy('tanggal')
+            ->orderBy('jam_mulai')
+            ->limit(12)
+            ->get();
+
+        return view('peminjam.rooms.show', compact('room', 'selectedDate', 'approvedBookings', 'pendingBookings', 'upcomingBookings', 'daySchedules', 'selectedDaySchedules'));
     }
 
     /**
@@ -88,6 +98,10 @@ class RoomController extends Controller
             ->orderBy('jam_mulai')
             ->get(['id', 'jam_mulai', 'jam_selesai', 'keperluan']);
 
+        $fixedSchedules = $room->schedules()->where('aktif', true)
+            ->where('day_of_week', (int) Carbon::parse($date)->dayOfWeekIso)
+            ->orderBy('jam_mulai')->get(['jam_mulai', 'jam_selesai', 'nama_kegiatan', 'jenis']);
+
         return response()->json([
             'room' => [
                 'id' => $room->id,
@@ -98,6 +112,7 @@ class RoomController extends Controller
             'tanggal' => $date,
             'is_maintenance' => $room->status === 'maintenance',
             'bookings' => $bookings,
+            'fixed_schedules' => $fixedSchedules,
         ]);
     }
 }
